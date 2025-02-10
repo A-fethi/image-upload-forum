@@ -1,0 +1,165 @@
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+body {
+  background: #f5f5f5;
+}
+
+/* Grid Layout */
+.container {
+  display: grid;
+  grid-template-columns: 250px 1fr 300px; /* Left, Main, Right */
+  grid-template-rows: 60px 1fr;          /* Optional for header */
+  min-height: 100vh;
+  gap: 20px;
+  padding: 20px;
+}
+
+/* Left Sidebar */
+.left-sidebar {
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+.categories {
+  list-style: none;
+}
+
+.categories li {
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.categories li:hover {
+  background: #f0f0f0;
+}
+
+/* Main Content */
+.main-content {
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.main-content h1 {
+  margin-bottom: 20px;
+  color: #333;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.add-post {
+  margin-top: 20px;
+}
+
+.add-post form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.add-post label {
+  font-size: 16px;
+  font-weight: bold;
+  color: #555;
+}
+
+.add-post input[type="text"],
+.add-post textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.add-post input[type="text"]:focus,
+.add-post textarea:focus {
+  border-color: #3498db;
+}
+
+.add-post textarea {
+  min-height: 120px;
+  resize: none;
+}
+
+#add-post-button {
+  padding: 10px 20px;
+  background-color: #2563eb;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#add-post-button:hover {
+  background-color: #1d4ed8;
+  transform: scale(1.05);
+}
+
+/* Right Sidebar (Optional) */
+.right-sidebar {
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-image {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 10px;
+  color: #333;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background 0.3s;
+}
+
+.dropdown-menu a:hover {
+  background: #f0f0f0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+      grid-template-columns: 1fr; /* Single column layout */
+      gap: 15px;
+  }
+
+  .left-sidebar, .right-sidebar {
+      display: none; /* Hide sidebars on smaller screens */
+  }
+}

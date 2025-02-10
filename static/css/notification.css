@@ -1,0 +1,25 @@
+
+
+.notification-container {
+    position: fixed;
+    top: 60px;
+    right: 20px;
+    max-width: 300px;
+    padding: 15px;
+    border-radius: 5px;
+    background-color: rgba(255, 0, 0, 0.8);
+    color: white;
+    font-weight: bold;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    transition: opacity 0.3s ease-in-out;
+    z-index: 10000;
+}
+
+.hidden {
+    display: none;
+}
+
+.show {
+    display: block;
+    opacity: 1;
+}

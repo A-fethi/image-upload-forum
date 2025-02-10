@@ -1,0 +1,10 @@
+.vscode/
+*.db
+*.log
+bin
+tmp
+node_modules
+package-lock.json
+test
+.git
+.gitignore

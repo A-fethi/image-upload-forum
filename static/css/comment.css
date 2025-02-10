@@ -1,0 +1,142 @@
+.comment {
+  padding: 15px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  gap: 9px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.comment p {
+  margin: 0;
+  font-size: 14px;
+  max-width: 100%;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  flex: 1;
+}
+
+.comment strong {
+  font-weight: bold;
+  color: #007bff;
+}
+
+.likes-count,
+.dislikes-count {
+  font-size: 14px;
+  color: #555;
+  display: block;
+}
+
+.comment button {
+  display: flex;
+  align-items: center;
+  border: none;
+  background: none;
+  color: #555;
+  font-size: 14px;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  width: fit-content;
+}
+
+.comment button:focus {
+  outline: none;
+}
+
+.comment i {
+  margin-right: 5px;
+  font-size: 16px;
+}
+
+.comment-item {
+  padding: 15px;
+  border-bottom: 1px solid #ddd;
+  background-color: #f9f9f9;
+}
+
+.interactions-container {
+  display: flex;
+  flex-direction: row;
+  width: fit-content;
+  height: fit-content;
+  gap: 5px;
+}
+
+
+.like-btn,
+.comment .interactions-container .like-btn {
+  background-color: #e0f7fa;
+  border-color: #4fd1c5;
+  color: gray;
+}
+
+.like-btn:hover,
+.comment .interactions-container .like-btn:hover {
+  background-color: #4fd1c5;
+  color: #ffffff;
+}
+
+.dislike-btn,
+.comment .interactions-container .dislike-btn {
+  background-color: #ffebee;
+  border-color: #f44336;
+  color: gray;
+}
+
+.dislike-btn:hover,
+.comment .interactions-container .dislike-btn:hover {
+  background-color: #f44336;
+  color: #ffffff;
+}
+
+.comment .post-interactions {
+  display: flex;
+  gap: 16px;
+  padding-top: 8px;
+  margin-top: 8px;
+  border-top: 1px solid #e5e7eb;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+@media (max-width: 1023px) {
+  .comment {
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .comment p {
+    font-size: 13px;
+  }
+
+  .comment button {
+    font-size: 12px;
+    padding: 4px 8px;
+  }
+
+  .interactions-container {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 8px;
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+
+  .comment-item {
+    padding: 12px;
+  }
+
+  .comment-list {
+    padding: 0;
+    margin: 0;
+  }
+}
