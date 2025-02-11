@@ -598,6 +598,10 @@ noscript h1 {
   margin-bottom: 20px
 }
 
+#load-more {
+  display: none;
+}
+
 
 /* Form Adjustments for Smaller Screens */
 @media (max-width: 1023px) {
