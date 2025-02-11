@@ -157,9 +157,9 @@ func fetchAllPosts(posts *[]models.Post, page int, db *sql.DB) error {
 	var limit = 10 * page
 
 	query := `SELECT username, id, title, content, Image_Content, Categories, created_at, likes, dislikes 
-              	FROM posts 
-              ORDER BY created_at DESC 
-              LIMIT ?`
+            FROM posts 
+            ORDER BY created_at DESC 
+            LIMIT ?`
 
 	config.Logger.Printf("Executing query: %s with limit %d", query, limit)
 

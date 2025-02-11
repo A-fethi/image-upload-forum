@@ -33,19 +33,19 @@ func fetchUserCreatedPosts(posts *[]models.Post, username string, db *sql.DB) er
 func fetchUserLikedPosts(posts *[]models.Post, userID int, db *sql.DB) error {
 	query := `
 		SELECT posts.username, 
-    		posts.id AS post_id, 
-    		posts.title, 
-    		posts.content,
-			posts.img,
-    		posts.Categories, 
-    		posts.created_at, 
-    		posts.likes, 
-    		posts.dislikes
+		posts.id AS post_id, 
+		posts.title, 
+		posts.content,
+		posts.img,
+		posts.Categories,
+		posts.created_at,
+		posts.likes, 
+		posts.dislikes
 		FROM posts
 		JOIN user_interactions ON posts.id = user_interactions.item_id
 		WHERE user_interactions.user_id = ? 
-  		AND user_interactions.item_type = "post" 
-  		AND user_interactions.action = "like"
+		AND user_interactions.item_type = "post" 
+		AND user_interactions.action = "like"
 		ORDER BY posts.created_at DESC
 	`
 	config.Logger.Printf("Fetching posts liked by user '%v'. Executing query: %s", userID, query)

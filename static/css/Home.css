@@ -587,11 +587,15 @@ noscript h1 {
 }
 
 .post-image img {
-  max-width: 100%; /* Ensures it never overflows the container */
-  height: auto; /* Keeps the aspect ratio */
-  border-radius: 10px; /* Adds rounded corners */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
-  object-fit: cover; /* Ensures it covers the space properly */
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  object-fit: cover;
+}
+
+#image {
+  margin-bottom: 20px
 }
 
 

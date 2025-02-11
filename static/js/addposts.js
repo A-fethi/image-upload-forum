@@ -4,7 +4,6 @@ import { createPostElement } from "./posts.js";
 export let post = {};
 
 export function checkPost() {
-  const isLoggedIn = document.cookie.includes("IsLoggedIn=true");
   const createPostButton = document.getElementById("create-post-button");
 
   if (createPostButton) {
@@ -21,19 +20,18 @@ export function checkPost() {
       if (titleInput && contentInput) {
         let title = titleInput.value.trim();
         let content = contentInput.value.trim();
-        let imageFile = imageInput.files[0]; // Get the actual file
+        let imageFile = imageInput.files[0];
 
         if (!title || !content) {
           showNotification("Error: Title and Content cannot be empty", "error");
           return;
         }
 
-        // Create FormData object to handle file upload
         const formData = new FormData();
         formData.append("title", title);
         formData.append("content", content);
         if (imageFile) {
-          formData.append("image", imageFile); // Only append if an image is uploaded
+          formData.append("image", imageFile);
         }
         selectedCategories.forEach((category) =>
           formData.append("categories", category)
@@ -50,7 +48,7 @@ export function checkPost() {
             const responseData = await resp.json();
             titleInput.value = "";
             contentInput.value = "";
-            imageInput.value = ""; // Reset file input
+            imageInput.value = "";
 
             document
               .querySelectorAll('input[name="category"]:checked')

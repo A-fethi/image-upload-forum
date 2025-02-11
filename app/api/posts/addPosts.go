@@ -21,37 +21,32 @@ import (
 func AddPost(resp http.ResponseWriter, req *http.Request, db *sql.DB) {
 	var postID int
 
-	// Check user authentication
 	if !auth.SessionCheck(resp, req, db) {
 		http.Error(resp, "User not authenticated", http.StatusUnauthorized)
 		return
 	}
 
-	// Parse form data
-	err := req.ParseMultipartForm(20 << 20) // Limit file size to 10MB
+	err := req.ParseMultipartForm(20 << 20)
 	if err != nil {
 		log.Println("Error parsing form data:", err)
 		http.Error(resp, "Error parsing form data", http.StatusBadRequest)
 		return
 	}
 
-	// Get form values
 	title := req.FormValue("title")
 	postContent := req.FormValue("content")
 	categories := req.Form["categories"]
 
-	// Image handling
 	var imageFilename string
 	file, header, err := req.FormFile("image")
 
-	if err == nil { // Image is optional, process only if provided
+	if err == nil {
 		defer file.Close()
 
 		if err := utils.ValidateImage(header.Filename); err != nil {
 			models.SendErrorResponse(resp, http.StatusBadRequest, "Error: Invalid File name extention")
 			return
 		}
-		// Generate a unique filename
 		imageFilename = fmt.Sprintf("%d_%s", time.Now().Unix(), header.Filename)
 		var imagePath string
 		path := "static/uploads"
@@ -61,7 +56,6 @@ func AddPost(resp http.ResponseWriter, req *http.Request, db *sql.DB) {
 		}
 		imagePath = filepath.Join("static/uploads", imageFilename)
 
-		// Create the file
 		outFile, err := os.Create(imagePath)
 		if err != nil {
 			log.Println("Error creating file:", err)
@@ -70,7 +64,6 @@ func AddPost(resp http.ResponseWriter, req *http.Request, db *sql.DB) {
 		}
 		defer outFile.Close()
 
-		// Copy the uploaded file to the new location
 		_, err = io.Copy(outFile, file)
 		if err != nil {
 			log.Println("Error saving file:", err)
@@ -81,13 +74,11 @@ func AddPost(resp http.ResponseWriter, req *http.Request, db *sql.DB) {
 		log.Println("No image uploaded, continuing without image.")
 	}
 
-	// Validate input data
 	if err := utils.ValidatePost(title, postContent); err != nil {
 		models.SendErrorResponse(resp, http.StatusBadRequest, "Error: Invalid Title/Post")
 		return
 	}
 
-	// Get user info
 	sessionToken, err := utils.GetSessionToken(req)
 	if err != nil || sessionToken == "" || !auth.SessionCheck(resp, req, db) {
 		models.SendErrorResponse(resp, http.StatusUnauthorized, "Access: Unauthorized")
@@ -107,7 +98,6 @@ func AddPost(resp http.ResponseWriter, req *http.Request, db *sql.DB) {
 		return
 	}
 
-	// Insert into the database
 	err = db.QueryRow(`
 		INSERT INTO posts (username, title, content, image_Content, categories, created_at)
 		VALUES (?, ?, ?, ?, ?, ?)
@@ -119,7 +109,6 @@ func AddPost(resp http.ResponseWriter, req *http.Request, db *sql.DB) {
 		return
 	}
 
-	// Return response
 	post := models.Post{
 		Username:     username,
 		ID:           postID,
