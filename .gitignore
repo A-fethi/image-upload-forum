@@ -5,4 +5,4 @@ tmp
 node_modules
 package-lock.json
 test
-./static/uploads
+static/uploads
